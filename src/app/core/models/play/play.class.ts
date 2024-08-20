@@ -2,7 +2,7 @@ import { Eat } from '@models/eat/eat.class';
 import { Snake } from '@models/snake/snake.class';
 import Phaser from 'phaser';
 
-export class PlayClass extends Phaser.Scene {
+export class Play extends Phaser.Scene {
   constructor(
     public snake: Snake,
     public eat: Eat,
