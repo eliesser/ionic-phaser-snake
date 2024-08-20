@@ -1,4 +1,4 @@
-import { BootLoader } from './boot-loader';
+import { BootLoader } from './boot-loader.class';
 
 describe('BootLoader', () => {
   it('should create an instance', () => {

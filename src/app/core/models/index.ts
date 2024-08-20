@@ -1,1 +1,2 @@
-export * from './boot-loader/boot-loader';
+export * from './boot-loader/boot-loader.class';
+export * from './menu/menu.class';
