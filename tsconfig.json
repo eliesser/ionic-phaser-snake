@@ -18,8 +18,28 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "lib": ["es2018", "dom", "scripthost"],
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      // core
+      "@guards/*": ["./src/app/core/guards/*"],
+      "@interceptors/*": ["./src/app/core/interceptors/*"],
+      "@models/*": ["./src/app/core/models/*"],
+      "@services/*": ["./src/app/core/services/*"],
+      "@utils/*": ["./src/app/core/utils/*"],
+
+      // features
+
+      // shared
+      "@components/*": ["./src/app/shared/components/*"],
+      "@directives/*": ["./src/app/shared/directives/*"],
+      "@pipes/*": ["./src/app/shared/pipes/*"],
+
+      // others
+      "@environments/*": ["./src/environments/*"],
+      "@testing": ["./src/testing/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
