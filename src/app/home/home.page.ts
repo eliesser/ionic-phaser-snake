@@ -24,10 +24,14 @@ export class HomePage implements OnInit {
   constructor() {
     this.config = {
       title: 'Snake',
-      width: 320,
-      height: 180,
-      type: Phaser.AUTO,
       parent: 'game-content',
+      type: Phaser.AUTO,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+      },
       backgroundColor: '#f9ca24',
       pixelArt: true,
       physics: {

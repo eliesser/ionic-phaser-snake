@@ -38,7 +38,7 @@ export class Eat {
     do {
       exist = false;
 
-      x = Phaser.Math.Between(0, this.gameHeight - 10);
+      x = Phaser.Math.Between(0, this.gameWidth - 10);
       y = Phaser.Math.Between(15, this.gameHeight - 10);
 
       x = Phaser.Math.Snap.To(x, 10);
