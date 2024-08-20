@@ -5,10 +5,6 @@ export class Menu extends Phaser.Scene {
     super('Menu');
   }
 
-  preload() {
-    console.log('Escena Menu');
-  }
-
   create() {
     const gameWidth = Number(this.sys.game.config.width);
     const gameHeight = Number(this.sys.game.config.height);
@@ -43,6 +39,6 @@ export class Menu extends Phaser.Scene {
   }
 
   goToPlay() {
-    console.log('goToPlay');
+    this.scene.start('Play');
   }
 }

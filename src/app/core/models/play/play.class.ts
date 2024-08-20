@@ -1,0 +1,45 @@
+import { Eat } from '@models/eat/eat.class';
+import { Snake } from '@models/snake/snake.class';
+import Phaser from 'phaser';
+
+export class PlayClass extends Phaser.Scene {
+  constructor(
+    public snake: Snake,
+    public eat: Eat,
+    public keys: Phaser.Types.Input.Keyboard.CursorKeys | undefined
+  ) {
+    super('Play');
+  }
+
+  preload() {
+    this.snake = new Snake(this);
+
+    this.eat = new Eat(this, this.snake);
+  }
+
+  create() {
+    this.scene.launch('UI');
+    const sceneUI: any = this.scene.get('UI');
+    this.keys = this.input.keyboard?.createCursorKeys();
+
+    this.physics.add.collider(this.snake.body[0], this.eat.food, () => {
+      this.eat.createFood();
+      this.snake.grow();
+      sceneUI.addPoint();
+    });
+  }
+
+  override update(time: number) {
+    if (this.keys?.left.isDown && this.snake.dir !== 'right') {
+      this.snake.changeMove('left');
+    } else if (this.keys?.right.isDown && this.snake.dir !== 'left') {
+      this.snake.changeMove('right');
+    } else if (this.keys?.up.isDown && this.snake.dir !== 'down') {
+      this.snake.changeMove('up');
+    } else if (this.keys?.down.isDown && this.snake.dir !== 'up') {
+      this.snake.changeMove('down');
+    }
+
+    this.snake.update(time);
+  }
+}

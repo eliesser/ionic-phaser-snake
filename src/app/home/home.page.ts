@@ -8,7 +8,7 @@ import {
 
 import Phaser from 'phaser';
 
-import { BootLoader, Menu } from '@models/index';
+import { BootLoader, GameOver, Menu, PlayClass, UI } from '@models/index';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +33,7 @@ export class HomePage {
       physics: {
         default: 'arcade',
       },
-      scene: [BootLoader, Menu],
+      scene: [BootLoader, PlayClass, GameOver, UI, Menu],
     };
   }
 

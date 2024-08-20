@@ -1,13 +1,11 @@
 import Phaser from 'phaser';
 
 export class BootLoader extends Phaser.Scene {
-  constructor(config: any) {
-    super(config);
+  constructor() {
+    super('BootLoader');
   }
 
   preload() {
-    console.log('Escena BootLoader');
-
     this.load.image('body', 'assets/images/body.png');
 
     this.load.image('food', 'assets/images/food.png');
