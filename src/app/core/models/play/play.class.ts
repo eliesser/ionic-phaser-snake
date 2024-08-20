@@ -1,6 +1,6 @@
-import { Eat } from '@models/eat/eat.class';
-import { Snake } from '@models/snake/snake.class';
 import Phaser from 'phaser';
+
+import { Eat, Snake, UI } from '@models/index';
 
 export class Play extends Phaser.Scene {
   constructor(

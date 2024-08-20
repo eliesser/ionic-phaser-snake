@@ -1,9 +1,17 @@
 import { Snake } from '@models/index';
 
 export class Eat {
-  constructor(public scene: any, public snake: Snake, public food: any = {}) {
+  constructor(
+    public scene: Phaser.Scene,
+    public snake: Snake,
+    public food: any = {} /* Phaser.Physics.Arcade.Group = {} as Phaser.Physics.Arcade.Group */,
+    public gameWidth: number = 0,
+    public gameHeight: number = 0
+  ) {
     this.scene = scene;
     this.snake = snake;
+    this.gameWidth = Number(this.scene.sys.game.config.width);
+    this.gameHeight = Number(this.scene.sys.game.config.height);
 
     this.food = this.scene.physics.add.group({
       key: 'food',
@@ -13,9 +21,7 @@ export class Eat {
     this.food.getChildren()[0].setOrigin(0).setDepth(-1);
   }
 
-  preload() {
-    this.snake = new Snake(this);
-  }
+  preload() {}
 
   createFood() {
     const { x, y } = this.getRandomXY();
@@ -32,8 +38,8 @@ export class Eat {
     do {
       exist = false;
 
-      x = Phaser.Math.Between(0, this.scene.sys.game.config.width - 10);
-      y = Phaser.Math.Between(15, this.scene.sys.game.config.height - 10);
+      x = Phaser.Math.Between(0, this.gameHeight - 10);
+      y = Phaser.Math.Between(15, this.gameHeight - 10);
 
       x = Phaser.Math.Snap.To(x, 10);
       y = Phaser.Math.Snap.To(y, 10);

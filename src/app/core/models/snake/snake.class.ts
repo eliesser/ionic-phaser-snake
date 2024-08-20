@@ -2,23 +2,23 @@ import { DirectionMove } from '@models/direction-move.type';
 
 export class Snake {
   constructor(
-    public scene: any,
-    public body: any[] = [],
+    public scene: Phaser.Scene,
+    public body: Phaser.Types.Physics.Arcade.ImageWithDynamicBody[] = [],
     public dir: DirectionMove = 'left',
-    public timer: number = 0
+    public timer: number = 0,
+    public gameWidth: number = 0,
+    public gameHeight: number = 0
   ) {
     this.scene = scene;
     this.body = body;
     this.dir = dir;
     this.timer = timer;
+    this.gameWidth = Number(this.scene.sys.game.config.width);
+    this.gameHeight = Number(this.scene.sys.game.config.height);
 
     for (let index = 0; index < 3; index++) {
       let body = this.scene.physics.add
-        .image(
-          this.scene.sys.game.config.width / 2 + index * 10,
-          this.scene.sys.game.config.height / 2,
-          'body'
-        )
+        .image(this.gameWidth / 2 + index * 10, this.gameHeight / 2, 'body')
         .setOrigin(0);
 
       if (index === 0) body = body.setCollideWorldBounds(true);
@@ -44,13 +44,13 @@ export class Snake {
         this.body[this.body.length - 1 - index].x = Phaser.Math.Wrap(
           this.body[this.body.length - 1 - index].x,
           0,
-          this.scene.sys.game.config.width
+          this.gameWidth
         );
 
         this.body[this.body.length - 1 - index].y = Phaser.Math.Wrap(
           this.body[this.body.length - 1 - index].y,
           20,
-          this.scene.sys.game.config.height
+          this.gameHeight
         );
       }
 
