@@ -1,0 +1,7 @@
+{
+  "name": "ionic-phaser-snake",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
