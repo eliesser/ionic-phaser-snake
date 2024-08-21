@@ -3,6 +3,7 @@ import { DirectionMove } from '@models/direction-move.type';
 export class Snake {
   constructor(
     public scene: Phaser.Scene,
+    public scale: number = 2,
     public body: Phaser.Types.Physics.Arcade.ImageWithDynamicBody[] = [],
     public dir: DirectionMove = 'left',
     public timer: number = 0,
@@ -15,10 +16,16 @@ export class Snake {
     this.timer = timer;
     this.gameWidth = Number(this.scene.sys.game.config.width);
     this.gameHeight = Number(this.scene.sys.game.config.height);
+    this.scale = scale;
 
     for (let index = 0; index < 3; index++) {
       let body = this.scene.physics.add
-        .image(this.gameWidth / 2 + index * 10, this.gameHeight / 2, 'body')
+        .image(
+          this.gameWidth / 2 + index * 10 * this.scale,
+          this.gameHeight / 2,
+          'body'
+        )
+        .setScale(this.scale, this.scale)
         .setOrigin(0);
 
       if (index === 0) body = body.setCollideWorldBounds(true);
@@ -56,16 +63,16 @@ export class Snake {
 
       switch (this.dir) {
         case 'right':
-          this.body[0].x += 10;
+          this.body[0].x += 10 * this.scale;
           break;
         case 'left':
-          this.body[0].x -= 10;
+          this.body[0].x -= 10 * this.scale;
           break;
         case 'up':
-          this.body[0].y -= 10;
+          this.body[0].y -= 10 * this.scale;
           break;
         case 'down':
-          this.body[0].y += 10;
+          this.body[0].y += 10 * this.scale;
           break;
 
         default:
@@ -80,6 +87,7 @@ export class Snake {
 
     const newObj = this.scene.physics.add
       .image(obj.x, obj.y, 'body')
+      .setScale(this.scale, this.scale)
       .setOrigin(0);
 
     this.body.push(newObj);

@@ -12,9 +12,10 @@ export class Play extends Phaser.Scene {
   }
 
   preload() {
-    this.snake = new Snake(this);
+    const scale = 3;
+    this.snake = new Snake(this, scale);
 
-    this.eat = new Eat(this, this.snake);
+    this.eat = new Eat(this, scale, this.snake);
   }
 
   create() {

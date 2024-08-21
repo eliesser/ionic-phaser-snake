@@ -9,10 +9,11 @@ export class Menu extends Phaser.Scene {
     const gameWidth = Number(this.sys.game.config.width);
     const gameHeight = Number(this.sys.game.config.height);
 
-    this.add.image(gameWidth / 2, gameHeight / 2 - 50, 'food').setScale(6);
+    this.add.image(gameWidth / 2, gameHeight / 2 - 80, 'food').setScale(8);
 
     this.add
       .dynamicBitmapText(gameWidth / 2, gameHeight / 2, 'pixel', 'SNAKE', 18)
+      .setScale(2)
       .setOrigin(0.5);
 
     const pressButton = this.add
@@ -23,6 +24,7 @@ export class Menu extends Phaser.Scene {
         'PRESS ANY BUTTON',
         8
       )
+      .setScale(2)
       .setOrigin(0.5);
 
     this.tweens.add({
